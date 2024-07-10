@@ -8,9 +8,9 @@
 <section class="box">
     <div class="content-box">{content}</div>
     <div class="info-box">
-        <span>{comment_count} Comments</span>
-        <span>{share_count} Shares</span>
-        <span>{like_count} Likes</span>
+        <span class="info-box-item">{comment_count} Comments</span>
+        <span class="info-box-item">{share_count} Shares</span>
+        <span class="info-box-item">{like_count} Likes</span>
     </div>
 </section>
 
@@ -25,5 +25,9 @@
     .content-box{
         padding-left:20px;
         background-color: aqua;
+    }
+    .info-box-item:hover{
+        background-color: black;
+        color: white;
     }
 </style>

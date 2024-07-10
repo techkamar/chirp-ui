@@ -1,18 +1,7 @@
 <script>
-	import Post from '../components/Post.svelte';
+	import HomeScreen from "../components/HomeScreen.svelte";
 </script>
 
 <section>
-	<div class="center-main">
-		<Post content="Hi" comment_count=1 like_count=1 share_count=100 />
-	</div>
+	<HomeScreen/>
 </section>
-
-<style>
-	.center-main{
-		margin:0px auto;
-		width: 900px;
-		height: 100vh;
-		background-color: ivory;
-	}
-</style>
