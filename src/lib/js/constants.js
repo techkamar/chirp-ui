@@ -1,0 +1,1 @@
+export const BACKEND_HOST = "http://localhost:8080"; // if backend host is empty. That means we are running in NGINX
