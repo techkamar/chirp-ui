@@ -1,13 +1,13 @@
 <script>
 	import {onMount} from 'svelte';
-	import {BACKEND_HOST} from '../lib/js/constants'
+	import {BACKEND_HOST,GET_ALL_POSTS} from '../lib/js/constants'
 	import {getCallResponseJSON} from '../lib/js/util';
 	import Post from './Post.svelte';
 	let posts = [];
 
 	onMount(async ()=>{
 		//Fetch all Posts
-		let url = BACKEND_HOST+"/api/v1/posts";
+		let url = BACKEND_HOST+GET_ALL_POSTS;
 		posts = await getCallResponseJSON(url);
 		console.log(posts);
 	})
@@ -16,7 +16,7 @@
 <section>
 	<div class="center-main">
 		{#each posts as post, i}
-			<Post content={post.content} comment_count={post.commentedby} like_count={post.likedby} share_count={post.sharedby+post.quotedby} />
+			<Post id = {post.id} content={post.content} comment_count={post.commentedby} like_count={post.likedby} share_count={post.sharedby+post.quotedby} />
 		{/each}
 	</div>
 </section>
