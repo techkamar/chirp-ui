@@ -6,17 +6,19 @@
 	import MakePost from './MakePost.svelte';
 	let posts = [];
 
-	onMount(async ()=>{
+	async function refreshPosts(){
 		//Fetch all Posts
 		let url = BACKEND_HOST+GET_ALL_POSTS;
 		posts = await getCallResponseJSON(url);
-		console.log(posts);
+	}
+	onMount(async ()=>{
+		await refreshPosts();
 	})
 </script>
 
 <section>
 	<div class="center-main">
-		<MakePost/>
+		<MakePost callback={refreshPosts}/>
 		{#each posts as post, i}
 			<Post id = {post.id} content={post.content} comment_count={post.commentedby} like_count={post.likedby} share_count={post.sharedby+post.quotedby} />
 		{/each}
