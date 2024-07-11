@@ -9,6 +9,16 @@ export async function postCallWithJSONResponseJSON(url,body_json){
     return responseJSON;
 }
 
+export async function postCallWithJSONResponseText(url,body_json){
+    let responseText = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body_json)
+    })
+    .then(response => response.text());
+    return responseText;
+}
+
 export async function getCallResponseJSON(url){
     let responseJSON = await fetch(url, {
         method: 'GET',
