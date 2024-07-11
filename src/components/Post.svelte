@@ -12,6 +12,10 @@
     let comments = [];
 
     async function getAllComments(postID){
+        if(commentsExpanded){
+            commentsExpanded = false;
+            return;
+        }
         let url = BACKEND_HOST+GET_ALL_POST_COMMENTS(postID);
 		comments = await getCallResponseJSON(url);
 		commentsExpanded = true;
