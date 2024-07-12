@@ -4,6 +4,8 @@
     export let comment_count;
     export let share_count;
     export let like_count;
+    export let callback;
+
 	import {getCallResponseJSON,postCallEmptyPayload} from '../lib/js/util';
     import {BACKEND_HOST, GET_ALL_POST_COMMENTS,LIKE_A_POST} from '../lib/js/constants';
     import Post from './Post.svelte';
@@ -16,6 +18,7 @@
     {
         let url = BACKEND_HOST+LIKE_A_POST(id);
 		await postCallEmptyPayload(url);
+        callback();
     }
     async function getAllComments(postID){
         if(commentsExpanded){
