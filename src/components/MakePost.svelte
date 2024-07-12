@@ -6,6 +6,8 @@
     let postContent = "";
 
     async function makePost(){
+        if(postContent.trim()=="")
+            return
         let url = BACKEND_HOST+MAKE_POST;
 		let body_json = {"content": postContent};
         let id = postCallWithJSONResponseText(url,body_json);
