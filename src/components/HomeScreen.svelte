@@ -39,7 +39,7 @@
 		<p> Welcome {displayName}.</p>
 		<MakePost callback={refreshPosts}/>
 		{#each posts as post, i}
-			<Post callback = {refreshPosts} id = {post.id} content={post.content} comment_count={post.commentedby} like_count={post.likedby} share_count={post.sharedby+post.quotedby} />
+			<Post callback = {refreshPosts} id = {post.id} user_id = {post.user_id} content={post.content} comment_count={post.commentedby} like_count={post.likedby} share_count={post.sharedby+post.quotedby} />
 		{/each}
 	</div>
 	<div class="right-pane">
