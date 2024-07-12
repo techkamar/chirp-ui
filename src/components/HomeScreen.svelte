@@ -21,6 +21,7 @@
 		//Fetch all Posts
 		let url = BACKEND_HOST+GET_ALL_POSTS;
 		posts = await getCallResponseJSON(url);
+		
 	}
 	onMount(async ()=>{
 		await refreshPosts();
