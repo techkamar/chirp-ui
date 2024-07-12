@@ -93,12 +93,11 @@
             </div>
             {#if commentsExpanded}
                 <div class="reply-box">
-                    <p> Replies</p>
                     {#each comments as comment,i}
-                    <Post id = {comment.id} content={comment.content} comment_count={comment.commentedby} like_count={comment.likedby} share_count={comment.sharedby+comment.quotedby} />
+                    <Post id = {comment.id} user_id = {comment.user_id} callback = {callback} created_date = {comment.created_date} content={comment.content} comment_count={comment.commentedby} like_count={comment.likedby} share_count={comment.sharedby+comment.quotedby} />
                     {/each}
+                    <MakeComment parentPostID={id}/>
                 </div>
-                <MakeComment parentPostID={id}/>
             {/if}
         </div>
     </div>
