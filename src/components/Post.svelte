@@ -7,6 +7,7 @@
 	import {getCallResponseJSON} from '../lib/js/util';
     import {BACKEND_HOST, GET_ALL_POST_COMMENTS} from '../lib/js/constants';
     import Post from './Post.svelte';
+    import MakeComment from './MakeComment.svelte';
 
     let commentsExpanded = false;
     let comments = [];
@@ -38,12 +39,14 @@
         <Post id = {comment.id} content={comment.content} comment_count={comment.commentedby} like_count={comment.likedby} share_count={comment.sharedby+comment.quotedby} />
         {/each}
     </div>
+    <MakeComment parentPostID={id}/>
     {/if}
 </section>
 
 <style>
     .box{
         border: 1px solid black;
+        margin-top:10px;
     }
     .info-box{
         display: grid;

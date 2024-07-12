@@ -10,7 +10,7 @@ export async function postCallWithJSONResponseJSON(url,body_json){
 }
 
 export async function postCallWithJSONResponseText(url,body_json){
-    let user_id = 1;
+    let user_id = localStorage.getItem("USER_ID");
     let responseText = await fetch(url, {
         method: 'POST',
         headers: { 
