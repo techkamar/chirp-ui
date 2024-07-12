@@ -24,6 +24,8 @@
 	}
 	onMount(async ()=>{
 		await refreshPosts();
+		userId = localStorage.getItem("USER_ID");
+		setDisplayName();
 	})
 </script>
 

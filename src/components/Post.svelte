@@ -4,14 +4,19 @@
     export let comment_count;
     export let share_count;
     export let like_count;
-	import {getCallResponseJSON} from '../lib/js/util';
-    import {BACKEND_HOST, GET_ALL_POST_COMMENTS} from '../lib/js/constants';
+	import {getCallResponseJSON,postCallEmptyPayload} from '../lib/js/util';
+    import {BACKEND_HOST, GET_ALL_POST_COMMENTS,LIKE_A_POST} from '../lib/js/constants';
     import Post from './Post.svelte';
     import MakeComment from './MakeComment.svelte';
 
     let commentsExpanded = false;
     let comments = [];
 
+    async function likePost()
+    {
+        let url = BACKEND_HOST+LIKE_A_POST(id);
+		await postCallEmptyPayload(url);
+    }
     async function getAllComments(postID){
         if(commentsExpanded){
             commentsExpanded = false;
@@ -30,7 +35,7 @@
             {comment_count} Comments
         </div>
         <span class="info-box-item">{share_count} Shares</span>
-        <span class="info-box-item">{like_count} Likes</span>
+        <span class="info-box-item" on:click={()=>{likePost()}}>{like_count} Likes</span>
     </div>
     {#if commentsExpanded}
     <div class="reply-box">

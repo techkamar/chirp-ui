@@ -12,6 +12,10 @@ export function GET_ALL_POST_COMMENTS(postID){
     return `/api/v1/post/${postID}/comments`;
 }
 
+export function LIKE_A_POST(postID){
+    return `/api/v1/post/${postID}/like`;
+}
+
 export function GET_USER_DETAIL(userID){
     return `/api/v1/user/${userID}`;
 }

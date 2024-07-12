@@ -23,6 +23,18 @@ export async function postCallWithJSONResponseText(url,body_json){
     return responseText;
 }
 
+export async function postCallEmptyPayload(url){
+    let user_id = localStorage.getItem("USER_ID");
+    let responseText = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'USER_ID': user_id
+        }
+    })
+    .then(response => response);
+    return responseText;
+}
+
 export async function getCallResponseJSON(url){
     let responseJSON = await fetch(url, {
         method: 'GET',
