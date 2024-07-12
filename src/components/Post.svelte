@@ -1,4 +1,7 @@
 <script>
+    import {onMount} from 'svelte';
+
+
     export let id;
     export let content;
     export let comment_count;
@@ -6,14 +9,49 @@
     export let like_count;
     export let user_id;
     export let callback;
+    export let created_date;
+    let monthNoNameMap = {
+        "01": "Jan",
+        "02": "Feb",
+        "03": "Mar",
+        "04": "Apr",
+        "05": "May",
+        "06": "Jun",
+        "07": "Jul",
+        "08": "Aug",
+        "09": "Sep",
+        "10": "Oct",
+        "11": "Nov",
+        "12": "Dec"
+    }
+    
     import nodp from '../lib/images/no-dp.webp';
+    
+    let dateTokensMap = created_date.substr(0,10).split("-");
+    let displayDateVal = dateTokensMap[2]+" "+monthNoNameMap[dateTokensMap[1]]+" "+dateTokensMap[0];
+    let displayName=""
+    let displayPicture = nodp;
+    let userName = "";
+
+    
 	import {getCallResponseJSON,postCallEmptyPayload} from '../lib/js/util';
-    import {BACKEND_HOST, GET_ALL_POST_COMMENTS,LIKE_A_POST} from '../lib/js/constants';
+    import {BACKEND_HOST, GET_ALL_POST_COMMENTS,LIKE_A_POST, GET_USER_DETAIL, GET_IMAGE} from '../lib/js/constants';
     import Post from './Post.svelte';
     import MakeComment from './MakeComment.svelte';
 
     let commentsExpanded = false;
     let comments = [];
+
+    async function getPostOwnerDetails(){
+        let url = BACKEND_HOST+GET_USER_DETAIL(user_id);
+		let userDetails = await getCallResponseJSON(url);
+		displayName = userDetails.display_name;
+        userName = userDetails.username;
+		displayPicture = BACKEND_HOST+GET_IMAGE(userDetails.display_pic);
+    }
+    onMount(async ()=>{
+		await getPostOwnerDetails();
+	})
 
     async function likePost()
     {
@@ -35,10 +73,10 @@
 <section class="post-main-container">
     <div class="post-main-inner-container">
         <div class="post-main-inner-left-container">
-            <img class="circle" src={nodp} width="40px" height="40px"/>
+            <img class="circle" src={displayPicture} width="40px" height="40px"/>
         </div>
         <div class="post-main-inner-right-container">
-            <div>User ID : {user_id}</div>
+            <div><b>{displayName}</b> @{userName} . {displayDateVal}</div>
             <div class="content-box">{content}</div>
             <div class="info-box">
                 <div class="info-box-item" on:click={()=> {getAllComments(id)}}>

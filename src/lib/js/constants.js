@@ -19,3 +19,7 @@ export function LIKE_A_POST(postID){
 export function GET_USER_DETAIL(userID){
     return `/api/v1/user/${userID}`;
 }
+
+export function GET_IMAGE(imageName){
+    return `/api/v1/images/${imageName}`;
+}
