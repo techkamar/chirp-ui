@@ -3,6 +3,7 @@
 	import {BACKEND_HOST,GET_ALL_POSTS,GET_USER_DETAIL, GET_IMAGE} from '../lib/js/constants'
 	import {getCallResponseJSON} from '../lib/js/util';
 	import Post from './Post.svelte';
+	import PostInfo from './PostInfo.svelte';
 	import MakePost from './MakePost.svelte';
 	let posts = [];
 	let userId = "";
@@ -44,7 +45,9 @@
 		<p> Welcome back <b>{displayName}</b>.</p>
 		<MakePost callback={refreshPosts}/>
 		{#each posts as post, i}
-			<Post callback = {refreshPosts} created_date = {post.created_date} id= {post.id} user_id = {post.user_id} content={post.content} comment_count={post.commentedby} like_count={post.likedby} share_count={post.sharedby+post.quotedby} />
+			<Post callback = {refreshPosts} created_date = {post.created_date} id= {post.id} user_id = {post.user_id} content={post.content}>
+				<PostInfo comment_count={post.commentedby} like_count={post.likedby} share_count={post.sharedby+post.quotedby}/>
+			</Post>
 		{/each}
 	</div>
 	<div class="right-pane">
