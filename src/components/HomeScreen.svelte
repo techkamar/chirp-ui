@@ -46,7 +46,7 @@
 		<MakePost callback={refreshPosts}/>
 		{#each posts as post, i}
 			<Post callback = {refreshPosts} created_date = {post.created_date} id= {post.id} user_id = {post.user_id} content={post.content}>
-				<PostInfo comment_count={post.commentedby} like_count={post.likedby} share_count={post.sharedby+post.quotedby}/>
+				<PostInfo postID= {post.id} comment_count={post.commentedby} like_count={post.likedby} share_count={post.sharedby+post.quotedby}/>
 			</Post>
 		{/each}
 	</div>
