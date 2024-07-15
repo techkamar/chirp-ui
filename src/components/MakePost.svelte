@@ -2,6 +2,7 @@
     import {postCallWithJSONResponseText} from '../lib/js/util';
     import {BACKEND_HOST, MAKE_POST} from '../lib/js/constants';
     let postContent = "";
+    export let callback = () => {};
 
     async function makePost(){
         if(postContent.trim()=="")
@@ -9,6 +10,7 @@
         let url = BACKEND_HOST+MAKE_POST;
 		let body_json = {"content": postContent};
         let id = postCallWithJSONResponseText(url,body_json);
+        await callback();
     }
 </script>
 <div class="post-box-main">
