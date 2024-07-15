@@ -1,7 +1,7 @@
 
 <script>
     import {getCallResponseJSON,postCallEmptyPayload} from '../lib/js/util';
-    import {BACKEND_HOST, GET_ALL_POST_COMMENTS,LIKE_A_POST, GET_USER_DETAIL, GET_IMAGE} from '../lib/js/constants';
+    import {BACKEND_HOST, GET_ALL_POST_COMMENTS,LIKE_A_POST, UNLIKE_A_POST} from '../lib/js/constants';
     import {onMount} from 'svelte';
     import Post from './Post.svelte';
     import MakeComment from './MakeComment.svelte';
@@ -27,6 +27,12 @@
 		let likeResp = await postCallEmptyPayload(url);
         if(likeResp.status==200){
             like_count+=1;
+        }
+        else if(likeResp.status==405){
+            // Already LIked. Then Unlike
+            let unlikeURL = BACKEND_HOST+UNLIKE_A_POST(postID);
+            await postCallEmptyPayload(unlikeURL);
+            like_count-=1;
         }
     }
 
