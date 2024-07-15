@@ -2,6 +2,7 @@
 	import {onMount} from 'svelte';
 	import {BACKEND_HOST,GET_ALL_POSTS,GET_USER_DETAIL, GET_IMAGE} from '../lib/js/constants'
 	import {getCallResponseJSON} from '../lib/js/util';
+	import nodp from '../lib/images/no-dp.webp';
 	import Post from './Post.svelte';
 	import PostInfo from './PostInfo.svelte';
 	import MakePost from './MakePost.svelte';
@@ -18,7 +19,12 @@
 		let url = BACKEND_HOST+GET_USER_DETAIL(userId);
 		let userDetails = await getCallResponseJSON(url);
 		displayName = userDetails.display_name;
-		displayPicture = BACKEND_HOST+GET_IMAGE(userDetails.display_pic);
+		if(userDetails.display_pic=="nodp"){
+			displayPicture=nodp;
+		}
+		else{
+			displayPicture = BACKEND_HOST+GET_IMAGE(userDetails.display_pic);
+		}
 	}
 	async function refreshPosts(){
 		//Fetch all Posts

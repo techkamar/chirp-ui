@@ -21,10 +21,17 @@
 	})
 </script>
 
-<section>
+<section class="main-container">
 	{#if postLoaded}
 		<Post created_date = {post.created_date} id= {post.id} user_id = {post.user_id} content={post.content}>
 			<PostInfo loadComments= {true} postID= {post.id} comment_count={post.commentedby} like_count={post.likedby} share_count={post.sharedby+post.quotedby}/>
 		</Post>
 	{/if}
 </section>
+
+<style>
+	.main-container{
+		margin: 0px auto;
+		max-width: 80vw;
+	}
+</style>

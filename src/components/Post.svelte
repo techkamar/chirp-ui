@@ -46,7 +46,12 @@
 		let userDetails = await getCallResponseJSON(url);
 		displayName = userDetails.display_name;
         userName = userDetails.username;
-		displayPicture = BACKEND_HOST+GET_IMAGE(userDetails.display_pic);
+		if(userDetails.display_pic=="nodp"){
+			displayPicture=nodp;
+		}
+		else{
+			displayPicture = BACKEND_HOST+GET_IMAGE(userDetails.display_pic);
+		}
     }
     onMount(async ()=>{
 		await getPostOwnerDetails();

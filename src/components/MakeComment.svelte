@@ -10,7 +10,6 @@
         let url = BACKEND_HOST+MAKE_COMMENT(parentPostID);
 		let body_json = {"content": postContent};
         let id = postCallWithJSONResponseText(url,body_json);
-        callback();
     }
 </script>
 <div class="post-box-main">

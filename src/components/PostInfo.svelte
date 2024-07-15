@@ -30,8 +30,6 @@
     async function getAllComments(){
         let url = BACKEND_HOST+GET_ALL_POST_COMMENTS(postID);
 		comments = await getCallResponseJSON(url);
-        console.log("Comments are ....")
-        console.log(comments);
 		commentsExpanded = true;
     }
 
@@ -70,7 +68,7 @@
                     comment_count={comment.commentedby} 
                     like_count={comment.likedby} 
                     share_count={comment.sharedby+comment.quotedby}/>
-                    
+
             </Post>
         {/each}
         <MakeComment parentPostID={postID}/>
