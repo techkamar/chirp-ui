@@ -34,12 +34,7 @@
 
     
 	import {getCallResponseJSON,postCallEmptyPayload} from '../lib/js/util';
-    import {BACKEND_HOST, GET_ALL_POST_COMMENTS,LIKE_A_POST, GET_USER_DETAIL, GET_IMAGE} from '../lib/js/constants';
-    import Post from './Post.svelte';
-    import MakeComment from './MakeComment.svelte';
-
-    let commentsExpanded = false;
-    let comments = [];
+    import {BACKEND_HOST, GET_USER_DETAIL, GET_IMAGE} from '../lib/js/constants';
 
     async function getPostOwnerDetails(){
         let url = BACKEND_HOST+GET_USER_DETAIL(user_id);

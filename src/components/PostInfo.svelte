@@ -71,7 +71,7 @@
 
             </Post>
         {/each}
-        <MakeComment parentPostID={postID}/>
+        <MakeComment callback={getAllComments}  parentPostID={postID}/>
     {/if}
 </div>
 

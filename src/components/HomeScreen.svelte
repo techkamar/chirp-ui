@@ -43,8 +43,7 @@
 <section class="main-container">
 	<div class="left-pane">
 		<img src={displayPicture} width="50px" height="50px"/>
-		<p> User ID </p>
-		<input type="text" bind:value={userId}/>
+		<input type="text" bind:value={userId} placeholder="Enter User ID..."/>
 		<button on:click={()=>{updateUserId()}}> Set </button>
 	</div>
 	<div class="center-main">
@@ -66,5 +65,9 @@
 		height: 100vh;
 		display: grid;
 		grid-template-columns: 1fr 5fr 1fr;
+	}
+	.left-pane{
+		display: flex;
+		flex-direction: column;
 	}
 </style>
