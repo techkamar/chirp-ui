@@ -43,10 +43,10 @@
 	</div>
 	<div class="center-main">
 		<p> Welcome back <b>{displayName}</b>.</p>
-		<MakePost callback={refreshPosts}/>
+		<MakePost/>
 		{#each posts as post, i}
-			<Post callback = {refreshPosts} created_date = {post.created_date} id= {post.id} user_id = {post.user_id} content={post.content}>
-				<PostInfo postID= {post.id} comment_count={post.commentedby} like_count={post.likedby} share_count={post.sharedby+post.quotedby}/>
+			<Post created_date = {post.created_date} id= {post.id} user_id = {post.user_id} content={post.content}>
+				<PostInfo loadComments= {false} postID= {post.id} comment_count={post.commentedby} like_count={post.likedby} share_count={post.sharedby+post.quotedby}/>
 			</Post>
 		{/each}
 	</div>

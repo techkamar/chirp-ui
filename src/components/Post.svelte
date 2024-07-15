@@ -8,7 +8,6 @@
     export let share_count;
     export let like_count;
     export let user_id;
-    export let callback;
     export let created_date;
     let monthNoNameMap = {
         "01": "Jan",
