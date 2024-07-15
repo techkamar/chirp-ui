@@ -53,7 +53,7 @@
 	})
 </script>
 
-<section class="post-main-container">
+<div class="post-main-container">
     <div class="post-main-inner-container">
         <div class="post-main-inner-left-container">
             <img class="circle" src={displayPicture} width="40px" height="40px"/>
@@ -64,10 +64,7 @@
             <slot/>
         </div>
     </div>
-    
-    
-    
-</section>
+</div>
 
 <style>
     .circle{
