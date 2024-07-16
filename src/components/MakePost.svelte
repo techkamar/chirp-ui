@@ -15,7 +15,7 @@
 </script>
 <div class="post-box-main">
     <p> Make a Post</p>
-    <textarea bind:value={postContent} rows="4"/>
+    <textarea bind:value={postContent} rows="4" class="content-box"/>
     <div class="split-two">
         <button class="blue-btn" on:click={()=>makePost()}>Post</button>
     </div>
@@ -23,6 +23,14 @@
 </div>
 
 <style>
+    .content-box{
+        background-color: transparent;
+        border-radius: 5px;
+        padding:5px;
+    }
+    .content-box:focus{
+        border: 0px;
+    }
     .post-box-main{
         display: flex;
         flex-direction: column;
