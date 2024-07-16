@@ -14,8 +14,7 @@
     }
 </script>
 <div class="post-box-main">
-    <p> Make a Post</p>
-    <textarea bind:value={postContent} rows="4" class="content-box"/>
+    <textarea bind:value={postContent} rows="4" class="content-box" placeholder="Enter your thoughts to make a post..."/>
     <div class="split-two">
         <button class="blue-btn" on:click={()=>makePost()}>Post</button>
     </div>
