@@ -1,4 +1,5 @@
-export const BACKEND_HOST = "http://localhost:8080"; // if backend host is empty. That means we are running in NGINX
+//export const BACKEND_HOST = "http://localhost:8080"; // if backend host is empty. That means we are running in NGINX
+export const BACKEND_HOST = "";
 
 // API end points covered here
 export const GET_ALL_POSTS = "/api/v1/posts";
