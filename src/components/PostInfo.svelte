@@ -6,8 +6,8 @@
     import Post from './Post.svelte';
     import MakeComment from './MakeComment.svelte';
     import PostInfo from './PostInfo.svelte';
-    import EmptyLove from './PostInfoComp/EmptyLove.svelte';
-    import FilledLove from './PostInfoComp/FilledLove.svelte';
+    import EmptyLove from './PostInfoComp/Love/EmptyLove.svelte';
+    import FilledLove from './PostInfoComp/Love/FilledLove.svelte';
 
     export let postID;
     export let comment_count;
