@@ -13,6 +13,7 @@
     export let comment_count;
     export let share_count;
     export let like_count;
+    export let likeids;
     export let isLiked = false;
     export let loadComments = false;
     export let commentsExpanded = false;
@@ -29,14 +30,14 @@
         let unlikeURL = BACKEND_HOST+UNLIKE_A_POST(postID);
         await postCallEmptyPayload(unlikeURL);
         like_count-=1;
-        isLiked = false;
+        isLiked = !isLiked;
     }
     async function likePost()
     {
         let url = BACKEND_HOST+LIKE_A_POST(postID);
 		let likeResp = await postCallEmptyPayload(url);
         if(likeResp.status==200){
-            isLiked= true;
+            isLiked = !isLiked;
             like_count+=1;
         }
         else if(likeResp.status==405){
@@ -54,6 +55,8 @@
         if(loadComments){
             getAllComments();
         }
+        let curr_user_id = parseInt(localStorage.getItem("USER_ID"));
+        isLiked = likeids.includes(curr_user_id);
     });
 </script>
 <div class="info-box">

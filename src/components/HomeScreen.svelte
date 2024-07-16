@@ -1,12 +1,13 @@
 <script>
 	import {onMount} from 'svelte';
-	import {BACKEND_HOST,GET_ALL_POSTS,GET_USER_DETAIL, GET_IMAGE} from '../lib/js/constants'
-	import {getCallResponseJSON} from '../lib/js/util';
+	import {BACKEND_HOST,GET_ALL_POSTS,GET_USER_DETAIL, GET_IMAGE,GET_POST_LIKE_BY_USER_IDS} from '../lib/js/constants'
+	import {getCallResponseJSON, postCallWithJSONResponseJSON} from '../lib/js/util';
 	import nodp from '../lib/images/no-dp.webp';
 	import Post from './Post.svelte';
 	import PostInfo from './PostInfo.svelte';
 	import MakePost from './MakePost.svelte';
 	let posts = [];
+	let post_id_liked_user_ids_map = {};
 	let userId = "";
 	let displayName = "";
 	let displayPicture = "";
@@ -26,10 +27,31 @@
 			displayPicture = BACKEND_HOST+GET_IMAGE(userDetails.display_pic);
 		}
 	}
+	async function setPostIDUserIdMap(tmpposts,post_ids){
+		let url = BACKEND_HOST+GET_POST_LIKE_BY_USER_IDS;
+		let bodyJSON = {"post_ids":post_ids}
+		let post_id_user_ids = await postCallWithJSONResponseJSON(url,bodyJSON)
+		tmpposts = tmpposts.map(post=>{ 
+					let ids = post_id_user_ids[post.id];
+					if(ids==undefined)
+					{
+						post.like_ids = [];
+					}
+					else{
+						post.like_ids = ids;
+					}
+					return post
+		})
+		return tmpposts;
+	}
 	async function refreshPosts(){
 		//Fetch all Posts
 		let url = BACKEND_HOST+GET_ALL_POSTS;
-		posts = await getCallResponseJSON(url);
+		let tmpposts = await getCallResponseJSON(url);
+		let post_ids = tmpposts.map(post=>post.id);
+		
+		// Setting post only after getting all relevant information
+		posts = await setPostIDUserIdMap(tmpposts,post_ids);
 	}
 	onMount(async ()=>{
 		await refreshPosts();
@@ -49,7 +71,7 @@
 		<MakePost callback={refreshPosts}/>
 		{#each posts as post, i}
 			<Post created_date = {post.created_date} id= {post.id} user_id = {post.user_id} content={post.content}>
-				<PostInfo loadComments= {false} postID= {post.id} comment_count={post.commentedby} like_count={post.likedby} share_count={post.sharedby+post.quotedby}/>
+				<PostInfo likeids = {post.like_ids.toString()} loadComments= {false} postID= {post.id} comment_count={post.commentedby} like_count={post.likedby} share_count={post.sharedby+post.quotedby}/>
 			</Post>
 		{/each}
 	</div>
