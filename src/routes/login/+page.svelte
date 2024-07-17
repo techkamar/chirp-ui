@@ -81,7 +81,7 @@
 }
 
 h1 {
-    color: #4CAF50;
+    color: #7B68EE;
 }
 
 label {
@@ -113,7 +113,7 @@ button {
     border: none;
     color: white;
     cursor: pointer;
-    background-color: #4CAF50;
+    background-color: #7B68EE;
     width: 100%;
     font-size: 16px;
 }

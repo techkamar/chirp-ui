@@ -63,7 +63,8 @@
 <section class="main-container">
 	<div class="left-pane">
 		<img src={displayPicture} width="150px" height="150px"/>
-		<button on:click={()=> {logout()}}> Sign Out </button>
+		<button on:click={()=>{}} class="settings-btn"> Change Display Picture</button>
+		<button on:click={()=> {logout()}} class="settings-btn black-btn"> Sign Out </button>
 	</div>
 	<div class="center-main">
 		<p> Welcome back <b>{displayName}</b>.</p>
@@ -88,5 +89,23 @@
 	.left-pane{
 		display: flex;
 		flex-direction: column;
+	}
+	.settings-btn{
+		padding: 15px;
+		border-radius: 3px;
+		margin-top: 5px;
+		border: none;
+		color: white;
+		cursor: pointer;
+		background-color: #FA8072;
+		width: 100%;
+		font-size: 13px;
+		opacity: 0.5;
+	}
+	.black-btn{
+		background-color: black;
+	}
+	.settings-btn:hover{
+		opacity: 1;
 	}
 </style>
