@@ -7,6 +7,8 @@ export const MAKE_POST = "/api/v1/post";
 export const GET_POST_LIKE_BY_USER_IDS="/api/v1/post/like/userids";
 export const VALIDATE_LOGIN = "/api/v1/auth/validate-login";
 export const LOGIN = "/api/v1/auth/login";
+export const LOGOUT = "/api/v1/auth/logout";
+export const GET_LOGGED_IN_USER_DETAILS = "/api/v1/user";
 
 export function GET_SINGLE_POST_BY_ID(postID){
     return `/api/v1/post/${postID}`;

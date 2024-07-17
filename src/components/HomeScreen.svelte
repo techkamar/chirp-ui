@@ -1,6 +1,6 @@
 <script>
 	import {onMount} from 'svelte';
-	import {BACKEND_HOST,GET_ALL_POSTS,GET_USER_DETAIL, GET_IMAGE,GET_POST_LIKE_BY_USER_IDS} from '../lib/js/constants'
+	import {BACKEND_HOST,GET_ALL_POSTS,GET_LOGGED_IN_USER_DETAILS, LOGOUT,  GET_IMAGE,GET_POST_LIKE_BY_USER_IDS} from '../lib/js/constants'
 	import {getCallResponseJSON, postCallWithJSONResponseJSON, validateLogin} from '../lib/js/util';
 	import nodp from '../lib/images/no-dp.webp';
 	import Post from './Post.svelte';
@@ -11,12 +11,8 @@
 	let displayName = "";
 	let displayPicture = "";
 
-	function updateUserId(){
-		localStorage.setItem("USER_ID",userId);
-		setDisplayName();
-	}
 	async function setDisplayName(){
-		let url = BACKEND_HOST+GET_USER_DETAIL(userId);
+		let url = BACKEND_HOST+GET_LOGGED_IN_USER_DETAILS;
 		let userDetails = await getCallResponseJSON(url);
 		displayName = userDetails.display_name;
 		if(userDetails.display_pic=="nodp"){
@@ -52,19 +48,22 @@
 		// Setting post only after getting all relevant information
 		posts = await setPostIDUserIdMap(tmpposts,post_ids);
 	}
+	async function logout(){
+		let url = BACKEND_HOST+LOGOUT;
+		await getCallResponseJSON(url);
+		window.location.href="/";
+	}
 	onMount(async ()=>{
 		await validateLogin();
 		await refreshPosts();
-		userId = localStorage.getItem("USER_ID");
 		setDisplayName();
 	})
 </script>
 
 <section class="main-container">
 	<div class="left-pane">
-		<img src={displayPicture} width="50px" height="50px"/>
-		<input type="text" bind:value={userId} placeholder="Enter User ID..."/>
-		<button on:click={()=>{updateUserId()}}> Set </button>
+		<img src={displayPicture} width="150px" height="150px"/>
+		<button on:click={()=> {logout()}}> Sign Out </button>
 	</div>
 	<div class="center-main">
 		<p> Welcome back <b>{displayName}</b>.</p>
