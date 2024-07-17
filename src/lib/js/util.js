@@ -1,4 +1,6 @@
 
+import {BACKEND_HOST,VALIDATE_LOGIN} from './constants.js';
+
 export async function postCallWithJSONResponseJSON(url,body_json){
     let responseJSON = await fetch(url, {
         method: 'POST',
@@ -42,4 +44,12 @@ export async function getCallResponseJSON(url){
     })
     .then(response => response.json());
     return responseJSON;
+}
+
+export async function validateLogin(){
+    const url = BACKEND_HOST+VALIDATE_LOGIN;
+    let resp = await fetch(url, {method: 'GET'})
+    if(resp.status==401){
+        window.location.href = BACKEND_HOST+"/login";
+    }
 }

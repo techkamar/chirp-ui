@@ -1,13 +1,12 @@
 <script>
 	import {onMount} from 'svelte';
 	import {BACKEND_HOST,GET_ALL_POSTS,GET_USER_DETAIL, GET_IMAGE,GET_POST_LIKE_BY_USER_IDS} from '../lib/js/constants'
-	import {getCallResponseJSON, postCallWithJSONResponseJSON} from '../lib/js/util';
+	import {getCallResponseJSON, postCallWithJSONResponseJSON, validateLogin} from '../lib/js/util';
 	import nodp from '../lib/images/no-dp.webp';
 	import Post from './Post.svelte';
 	import PostInfo from './PostInfo.svelte';
 	import MakePost from './MakePost.svelte';
 	let posts = [];
-	let post_id_liked_user_ids_map = {};
 	let userId = "";
 	let displayName = "";
 	let displayPicture = "";
@@ -54,6 +53,7 @@
 		posts = await setPostIDUserIdMap(tmpposts,post_ids);
 	}
 	onMount(async ()=>{
+		await validateLogin();
 		await refreshPosts();
 		userId = localStorage.getItem("USER_ID");
 		setDisplayName();
