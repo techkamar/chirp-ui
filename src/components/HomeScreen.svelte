@@ -7,7 +7,6 @@
 	import PostInfo from './PostInfo.svelte';
 	import MakePost from './MakePost.svelte';
 	let posts = [];
-	let userId = "";
 	let displayName = "";
 	let displayPicture = "";
 
